@@ -1,5 +1,3 @@
-package model;
-
 public enum Subject {
     JAVA(1, true),
     OOP(2, true),
