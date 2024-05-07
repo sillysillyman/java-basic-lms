@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class StudentList {
 
@@ -11,6 +13,16 @@ public class StudentList {
 
     public static Map<Integer, Student> getList() {
         return list;
+    }
+
+    public ArrayList<Entry<Integer, Student>> getDuplicateStudentNameList(String name) {
+        ArrayList<Entry<Integer, Student>> duplicateStudentNameList = new ArrayList<>();
+        for (var entry : list.entrySet()) {
+            if (entry.getValue().getName().equals(name)) {
+                duplicateStudentNameList.add(entry);
+            }
+        }
+        return duplicateStudentNameList;
     }
 }
 
