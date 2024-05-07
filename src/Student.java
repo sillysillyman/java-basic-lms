@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Student {
 
     private final int id;
-    private String name;
+    private final String name;
     private ArrayList<Subject> subjectList;
     private Report report;
 
