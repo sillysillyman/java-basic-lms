@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Scanner;
 
 public class StudentList {
 
@@ -11,7 +12,7 @@ public class StudentList {
         this.list = list;
     }
 
-    public static Map<Integer, Student> getList() {
+    public Map<Integer, Student> getList() {
         return list;
     }
 
@@ -23,6 +24,46 @@ public class StudentList {
             }
         }
         return duplicateStudentNameList;
+    }
+
+    public Student getStudentByName(Scanner sc) {
+        Student student;
+        while (true) {
+            System.out.println("Enter student name: ");
+            String name = sc.next();
+            sc.nextLine();
+            ArrayList<Entry<Integer, Student>> duplicateStudentNameList = getDuplicateStudentNameList(
+                name);
+            if (duplicateStudentNameList.isEmpty()) {
+                System.out.println(
+                    "There is no student having such name in the list. Please try again.");
+            } else if (duplicateStudentNameList.size() == 1) {
+                student = duplicateStudentNameList.get(0).getValue();
+                break;
+            } else {
+                System.out.println("The name you entered is not unique.");
+                while (true) {
+                    System.out.print("Enter the ID: ");
+                    boolean isValidId = false;
+                    int studentId = sc.nextInt();
+                    sc.nextLine();
+
+                    for (var entry : duplicateStudentNameList) {
+                        if (entry.getKey() == studentId) {
+                            isValidId = true;
+                            break;
+                        }
+                    }
+                    if (isValidId) {
+                        student = list.get(studentId);
+                        break;
+                    }
+                    System.out.println("The ID you entered is not valid. Please try again.");
+                }
+                break;
+            }
+        }
+        return student;
     }
 
     public int getNewId() {
@@ -65,10 +106,10 @@ public class StudentList {
         System.out.println("+");
 
         int i = 1;
-        for (var entity : list.entrySet()) {
+        for (var entry : list.entrySet()) {
             System.out.printf("|%" + maxIndexWidth + "d|", i++);
-            System.out.printf("%" + (maxIdWidth + 5) + "d|", entity.getKey());
-            System.out.printf("%" + (maxNameWidth + 5) + "s|\n", entity.getValue().getName());
+            System.out.printf("%" + (maxIdWidth + 5) + "d|", entry.getKey());
+            System.out.printf("%" + (maxNameWidth + 5) + "s|\n", entry.getValue().getName());
             System.out.print("+");
             System.out.print("-".repeat(maxIndexWidth));
             System.out.print("+");

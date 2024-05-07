@@ -19,17 +19,17 @@ public class Report {
         return table;
     }
 
-    public boolean addSubjectScore(Subject subject, Integer num) {
-        if (num < 0 || 100 < num) {
-            System.out.println("Invalid score: the score must be between 0 and 100.");
+    public boolean addSubjectScore(Subject subject, int scoreInt) {
+        if (scoreInt < 0 || 100 < scoreInt) {
+            System.out.print("The score must be between 0 and 100. ");
             return false;
         }
         Score score = table.get(subject);
         if (score.getScores().size() >= 10) {
-            System.out.println("The student has already taken the course 10 times.");
+            System.out.print("The student has already taken the subject 10 times. ");
             return false;
         }
-        // TO BE IMPLEMENTED
+        table.get(subject).addScoreOfASubject(subject, scoreInt);
         return true;
     }
 }

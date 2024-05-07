@@ -1,3 +1,4 @@
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
@@ -25,7 +26,43 @@ public class Score {
         return scores;
     }
 
-    public boolean addScore(Integer num) {
+    public void addScoreOfASubject(Subject subject, int scoreInt) {
+        scores.add(new SimpleEntry<Integer, String>(scoreInt, getGradeByScore(subject, scoreInt)));
+    }
+
+    public String getGradeByScore(Subject subject, int scoreInt) {
+        if (subject.isRequired()) {
+            if (95 <= scoreInt) {
+                return "A";
+            } else if (90 <= scoreInt) {
+                return "B";
+            } else if (80 <= scoreInt) {
+                return "C";
+            } else if (70 <= scoreInt) {
+                return "D";
+            } else if (60 <= scoreInt) {
+                return "F";
+            } else {
+                return "N";
+            }
+        } else {
+            if (90 <= scoreInt) {
+                return "A";
+            } else if (80 <= scoreInt) {
+                return "B";
+            } else if (70 <= scoreInt) {
+                return "C";
+            } else if (60 <= scoreInt) {
+                return "D";
+            } else if (50 <= scoreInt) {
+                return "F";
+            } else {
+                return "N";
+            }
+        }
+    }
+
+    public boolean addScore(int scoreInt) {
         // TO BE IMPLEMENTED
         return true;
     }

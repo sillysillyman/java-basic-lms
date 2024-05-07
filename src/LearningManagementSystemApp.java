@@ -37,7 +37,6 @@ public class LearningManagementSystemApp {
                 case 3 -> flag = false; // program termination
                 default -> {
                     System.out.println("Invalid input. Please try again.");
-                    Thread.sleep(2000);
                 }
             }
         }
@@ -166,8 +165,23 @@ public class LearningManagementSystemApp {
 
     private static void registerScore() {
         System.out.println("Registering score of a subject...");
-        // TO BE IMPLEMENTED
-        System.out.println("Success to register");
+        Student student = studentList.getStudentByName(sc);
+        while (true) {
+            Subject.printAllSubjects();
+            System.out.print("Enter a subject you want to register: ");
+            String subjectName = sc.next();
+            sc.nextLine();
+            Subject subject = Subject.valueOf(subjectName);
+            System.out.println("Enter the score you got: ");
+            int scoreInt = sc.nextInt();
+            sc.nextLine();
+            if (!student.getReport().addSubjectScore(subject, scoreInt)) {
+                System.out.println("Please try again.");
+            } else {
+                break;
+            }
+        }
+        System.out.println("Success to register.");
     }
 
     private static void updateScoreBySubject() {
@@ -178,7 +192,7 @@ public class LearningManagementSystemApp {
 
     private static void inquireGradesBySubject() {
         System.out.println("Inquiring grades by a subject.");
-        // TO BE IMPLEMENTED
+        
         System.out.println("Success to inquire.");
     }
 
