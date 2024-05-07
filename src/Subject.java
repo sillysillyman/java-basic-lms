@@ -20,10 +20,14 @@ public enum Subject {
     }
 
     public static void printAllSubjects() {
+        System.out.printf("%2s", "ID");
+        System.out.printf("%20s", "Subject");
+        System.out.printf("%15s\n", "Type");
         for (var subject : Subject.values()) {
-            System.out.println(
-                subject.getId() + ". " + subject.name() + "(" + (subject.isRequired() ? "required"
-                    : "selective") + ")");
+            System.out.printf("%2d", subject.getId());
+            System.out.printf("%20s", subject.name());
+            System.out.printf("%15s\n", subject.isRequired() ? "required"
+                : "selective");
         }
     }
 
