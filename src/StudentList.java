@@ -5,9 +5,12 @@ public class StudentList {
 
     private static Map<Integer, Student> list;
 
-    public StudentList() {
-        this.list = new HashMap<>();
+    public StudentList(Map<Integer, Student> list) {
+        this.list = list;
     }
 
+    public static Map<Integer, Student> getList() {
+        return list;
+    }
 }
 

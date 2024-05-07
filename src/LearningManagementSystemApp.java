@@ -1,10 +1,11 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 
 public class LearningManagementSystemApp {
 
     private static Scanner sc = new Scanner(System.in);
-    private static StudentList studentlist = new StudentList();
+    private static StudentList studentlist = new StudentList(new HashMap<Integer, Student>());
 
     public static void main(String[] args) {
         try {
@@ -73,7 +74,7 @@ public class LearningManagementSystemApp {
         System.out.println("Registering a student...");
         System.out.print("Enter the student name: ");
         String studentName = sc.next();
-        // TO BE IMPLEMENTED
+
         System.out.println("Success to register the student.");
     }
 
