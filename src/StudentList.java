@@ -57,11 +57,11 @@ public class StudentList {
         System.out.printf("%" + (maxIdWidth + 5) + "s|", "ID");
         System.out.printf("%" + (maxNameWidth + 5) + "s|\n", "Name");
         System.out.print("+");
-        System.out.print("-".repeat(maxIndexWidth));
+        System.out.print("=".repeat(maxIndexWidth));
         System.out.print("+");
-        System.out.print("-".repeat(maxIdWidth + 5));
+        System.out.print("=".repeat(maxIdWidth + 5));
         System.out.print("+");
-        System.out.print("-".repeat(maxNameWidth + 5));
+        System.out.print("=".repeat(maxNameWidth + 5));
         System.out.println("+");
 
         int i = 1;

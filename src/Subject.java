@@ -20,14 +20,35 @@ public enum Subject {
     }
 
     public static void printAllSubjects() {
-        System.out.printf("%2s", "ID");
-        System.out.printf("%20s", "Subject");
-        System.out.printf("%15s\n", "Type");
+        System.out.print("+");
+        System.out.print("-".repeat(2));
+        System.out.print("+");
+        System.out.print("-".repeat(20));
+        System.out.print("+");
+        System.out.print("-".repeat(15));
+        System.out.println("+");
+        System.out.printf("|%2s|", "ID");
+        System.out.printf("%20s|", "Subject");
+        System.out.printf("%15s|\n", "Type");
+        System.out.print("+");
+        System.out.print("=".repeat(2));
+        System.out.print("+");
+        System.out.print("=".repeat(20));
+        System.out.print("+");
+        System.out.print("=".repeat(15));
+        System.out.println("+");
         for (var subject : Subject.values()) {
-            System.out.printf("%2d", subject.getId());
-            System.out.printf("%20s", subject.name());
-            System.out.printf("%15s\n", subject.isRequired() ? "required"
+            System.out.printf("|%2d|", subject.getId());
+            System.out.printf("%20s|", subject.name());
+            System.out.printf("%15s|\n", subject.isRequired() ? "required"
                 : "selective");
+            System.out.print("+");
+            System.out.print("-".repeat(2));
+            System.out.print("+");
+            System.out.print("-".repeat(20));
+            System.out.print("+");
+            System.out.print("-".repeat(15));
+            System.out.println("+");
         }
     }
 
