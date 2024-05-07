@@ -30,6 +30,39 @@ public class Score {
         scores.add(new SimpleEntry<Integer, String>(scoreInt, getGradeByScore(subject, scoreInt)));
     }
 
+    public void printScores() {
+        int i = 1;
+        System.out.print("+");
+        System.out.print("-".repeat(3));
+        System.out.print("+");
+        System.out.print("-".repeat(8));
+        System.out.print("+");
+        System.out.print("-".repeat(8));
+        System.out.println("+");
+        System.out.printf("|%3s|", "");
+        System.out.printf("%8s|", "Score");
+        System.out.printf("%8s|\n", "Grade");
+        System.out.print("+");
+        System.out.print("=".repeat(3));
+        System.out.print("+");
+        System.out.print("=".repeat(8));
+        System.out.print("+");
+        System.out.print("=".repeat(8));
+        System.out.println("+");
+        for (var score : scores) {
+            System.out.printf("|%3d|", i++);
+            System.out.printf("%8d|", score.getKey());
+            System.out.printf("%8s|\n", score.getValue());
+            System.out.print("+");
+            System.out.print("-".repeat(3));
+            System.out.print("+");
+            System.out.print("-".repeat(8));
+            System.out.print("+");
+            System.out.print("-".repeat(8));
+            System.out.println("+");
+        }
+    }
+
     public String getGradeByScore(Subject subject, int scoreInt) {
         if (subject.isRequired()) {
             if (95 <= scoreInt) {

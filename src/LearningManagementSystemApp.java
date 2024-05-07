@@ -168,11 +168,10 @@ public class LearningManagementSystemApp {
         Student student = studentList.getStudentByName(sc);
         while (true) {
             Subject.printAllSubjects();
-            System.out.print("Enter a subject you want to register: ");
+            System.out.print("Enter a subject name you want to register: ");
             String subjectName = sc.next();
-            sc.nextLine();
             Subject subject = Subject.valueOf(subjectName);
-            System.out.println("Enter the score you got: ");
+            System.out.print("Enter the score you got: ");
             int scoreInt = sc.nextInt();
             sc.nextLine();
             if (!student.getReport().addSubjectScore(subject, scoreInt)) {
@@ -192,7 +191,15 @@ public class LearningManagementSystemApp {
 
     private static void inquireGradesBySubject() {
         System.out.println("Inquiring grades by a subject.");
-        
+        Student student = studentList.getStudentByName(sc);
+        student.printSubjectList();
+        System.out.println("Enter the subject you want to inquire: ");
+        String subjectString = sc.next();
+        sc.nextLine();
+        Subject subject = Subject.valueOf(subjectString);
+
+        Score score = student.getReport().getTable().get(subject);
+        score.printScores();
         System.out.println("Success to inquire.");
     }
 

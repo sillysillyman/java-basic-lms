@@ -29,9 +29,8 @@ public class StudentList {
     public Student getStudentByName(Scanner sc) {
         Student student;
         while (true) {
-            System.out.println("Enter student name: ");
+            System.out.print("Enter the student name: ");
             String name = sc.next();
-            sc.nextLine();
             ArrayList<Entry<Integer, Student>> duplicateStudentNameList = getDuplicateStudentNameList(
                 name);
             if (duplicateStudentNameList.isEmpty()) {
