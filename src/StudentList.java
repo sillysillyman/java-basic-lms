@@ -24,5 +24,16 @@ public class StudentList {
         }
         return duplicateStudentNameList;
     }
+
+    public int getNewId() {
+        int newId = 0;
+
+        while (true) {
+            if (!list.containsKey(++newId)) {
+                break;
+            }
+        }
+        return newId;
+    }
 }
 

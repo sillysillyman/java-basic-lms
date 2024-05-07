@@ -25,4 +25,19 @@ public class Student {
     public ArrayList<Subject> getSubjectList() {
         return subjectList;
     }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public void initSubjectList(ArrayList<Subject> subjects) {
+        subjectList.addAll(subjects);
+        initReport();
+    }
+
+    private void initReport() {
+        for (Subject subject : subjectList) {
+            report.table.put(subject, null);
+        }
+    }
 }

@@ -1,11 +1,13 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 
 public class LearningManagementSystemApp {
 
     private static Scanner sc = new Scanner(System.in);
-    private static StudentList studentList = new StudentList(new HashMap<Integer, Student>());
+    private static StudentList studentList = new StudentList(new HashMap<>());
 
     public static void main(String[] args) {
         try {
@@ -59,13 +61,11 @@ public class LearningManagementSystemApp {
                     flag = false;
                 }
                 case 2 -> {
-                    inquireStudent(); // making student list inquiry}
+                    inquireStudent(); // making student list inquiry
                     flag = false;
                 }
                 case 3 -> flag = false; // movement to main view back
-                default -> {
-                    System.out.println("Invalid input. Please try again.");
-                }
+                default -> System.out.println("Invalid input. Please try again.");
             }
         }
     }
@@ -73,7 +73,54 @@ public class LearningManagementSystemApp {
     private static void registerStudent() {
         System.out.println("Registering a student...");
         System.out.print("Enter the student name: ");
-        String studentName = sc.next();
+        String name = sc.next();
+        sc.nextLine();
+
+        ArrayList<Entry<Integer, Student>> duplicateStudentNameList = studentList.getDuplicateStudentNameList(
+            name);
+        if (!duplicateStudentNameList.isEmpty()) {
+            System.out.println("Maybe you are already registered.");
+            for (var duplicateStudent : duplicateStudentNameList) {
+                System.out.println(duplicateStudent.getKey() + ". " + duplicateStudent.getValue());
+            }
+            while (true) {
+                System.out.println("Are you sure to register? (y/n)");
+                String answer = sc.next();
+                sc.nextLine();
+                if (answer.equals("y")) {
+                    break;
+                } else if (answer.equals("n")) {
+                    return;
+                } else {
+                    System.out.println("Invalid input. Please try again.");
+                }
+            }
+        }
+        int newId = studentList.getNewId();
+        Student student = new Student(newId, name);
+        while (true) {
+            System.out.println(
+                "Select subjects you are willing to take. You must choose at least 3 required subjects and at least 2 selective subjects.");
+            Subject.printAllSubjects();
+            System.out.println("Enter IDs separated by whitespaces. (e.g. 1 2 3)");
+
+            String[] subjectStringIds = sc.nextLine().split("\\s+");
+            int[] subjectIds = new int[subjectStringIds.length];
+            for (int i = 0; i < subjectIds.length; i++) {
+                subjectIds[i] = Integer.parseInt(subjectStringIds[i]);
+            }
+            ArrayList<Subject> subjects = new ArrayList<>();
+            for (int subjectId : subjectIds) {
+                subjects.add(Subject.findById(subjectId));
+            }
+            if (Subject.isValidSubjects(subjects)) {
+                student.initSubjectList(subjects);
+                break;
+            } else {
+                System.out.println(
+                    "The number of subjects you chose is not enough. Please try again.");
+            }
+        }
         System.out.println("Success to register the student.");
     }
 
@@ -90,8 +137,8 @@ public class LearningManagementSystemApp {
         System.out.println("Processing score management...");
         while (flag) {
             System.out.println("1. register a student's exam scores by subject");
-            System.out.println("2. update a student's course score");
-            System.out.println("3. inquire a student's grades by course of a subject");
+            System.out.println("2. update a student's score of a subject");
+            System.out.println("3. inquire a student's grades of a subject");
             System.out.println("4. move to the main view back.");
             System.out.print("Select an option: ");
             int input = sc.nextInt();
@@ -109,10 +156,8 @@ public class LearningManagementSystemApp {
                     inquireGradesBySubject(); // inquiry of a student grades
                     flag = false;
                 }
-                case 4 -> flag = false; // 메인 화면 이동
-                default -> {
-                    System.out.println("Invalid input. Please try again.");
-                }
+                case 4 -> flag = false; // movement to main view back
+                default -> System.out.println("Invalid input. Please try again.");
             }
         }
     }
