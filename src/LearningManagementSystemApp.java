@@ -54,7 +54,7 @@ public class LearningManagementSystemApp {
 
             switch (option) {
                 case 1 -> {
-                    createStudent(); // student registration
+                    registerStudent(); // student registration
                     flag = false;
                 }
                 case 2 -> {
@@ -69,7 +69,7 @@ public class LearningManagementSystemApp {
         }
     }
 
-    private static void createStudent() {
+    private static void registerStudent() {
         System.out.println("Registering a student...");
         System.out.print("Enter the student name: ");
         String studentName = sc.next();
