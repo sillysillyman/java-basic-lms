@@ -6,7 +6,7 @@ public enum Subject {
     SPRING(3, true),
     JPA(4, true),
     MYSQL(5, true),
-    DEGINE_PATTERN(6, false),
+    DESIGN_PATTERN(6, false),
     SPRING_SECURITY(7, false),
     REDIS(8, false),
     MONGODB(9, false);

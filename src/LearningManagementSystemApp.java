@@ -10,6 +10,7 @@ public class LearningManagementSystemApp {
     private static StudentList studentList = new StudentList(new HashMap<>());
 
     public static void main(String[] args) {
+        studentList.setSampleData();
         try {
             displayMainView();
         } catch (Exception e) {
@@ -121,12 +122,13 @@ public class LearningManagementSystemApp {
                     "The number of subjects you chose is not enough. Please try again.");
             }
         }
+        studentList.addStudent(student);
         System.out.println("Success to register the student.");
     }
 
     private static void inquireStudent() {
         System.out.println("Inquiring the student list...");
-        // TO BE IMPLEMENTED
+        studentList.printAllStudents();
         System.out.println("Success to inquire the student list.");
     }
 
