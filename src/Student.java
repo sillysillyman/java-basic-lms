@@ -48,6 +48,10 @@ public class Student {
             System.out.print("The score must be between 0 and 100. ");
             return false;
         }
+        if (report.get(subject) == null) {
+            subjectList.add(subject);
+            report.put(subject, new Score(subject, new ArrayList<>()));
+        }
         Score score = report.get(subject);
         if (score.getScores().size() >= 10) {
             System.out.print("The student has already taken the subject 10 times. ");
