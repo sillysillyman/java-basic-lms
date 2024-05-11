@@ -184,13 +184,13 @@ public class LearningManagementSystemApp {
     }
 
     private static void updateScoreBySubject() {
-        System.out.println("Updating score by a subject.");
+        System.out.println("Updating score by a subject...");
         // TO BE IMPLEMENTED
         System.out.println("Success to update.");
     }
 
     private static void inquireGradesBySubject() {
-        System.out.println("Inquiring grades by a subject.");
+        System.out.println("Inquiring grades by a subject...");
         Student student = studentList.getStudentByName(sc);
         student.printSubjectList();
         System.out.println("Enter the subject you want to inquire: ");
