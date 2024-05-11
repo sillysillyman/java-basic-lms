@@ -1,17 +1,19 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Student {
 
     private final int id;
     private final String name;
     private ArrayList<Subject> subjectList;
-    private Report report;
+    private Map<Subject, Score> report;
 
     public Student(int id, String name) {
         this.id = id;
         this.name = name;
         this.subjectList = new ArrayList<>();
-        this.report = new Report(id);
+        this.report = new HashMap<>();
     }
 
     public int getId() {
@@ -26,7 +28,7 @@ public class Student {
         return subjectList;
     }
 
-    public Report getReport() {
+    public Map<Subject, Score> getReport() {
         return report;
     }
 
@@ -37,8 +39,22 @@ public class Student {
 
     private void initReport() {
         for (Subject subject : subjectList) {
-            report.table.put(subject, null);
+            report.put(subject, null);
         }
+    }
+
+    public boolean addSubjectScore(Subject subject, int scoreInt) {
+        if (scoreInt < 0 || 100 < scoreInt) {
+            System.out.print("The score must be between 0 and 100. ");
+            return false;
+        }
+        Score score = report.get(subject);
+        if (score.getScores().size() >= 10) {
+            System.out.print("The student has already taken the subject 10 times. ");
+            return false;
+        }
+        report.get(subject).addScoreOfASubject(subject, scoreInt);
+        return true;
     }
 
     public void printSubjectList() {

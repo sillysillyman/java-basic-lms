@@ -174,7 +174,7 @@ public class LearningManagementSystemApp {
             System.out.print("Enter the score you got: ");
             int scoreInt = sc.nextInt();
             sc.nextLine();
-            if (!student.getReport().addSubjectScore(subject, scoreInt)) {
+            if (!student.addSubjectScore(subject, scoreInt)) {
                 System.out.println("Please try again.");
             } else {
                 break;
@@ -198,7 +198,7 @@ public class LearningManagementSystemApp {
         sc.nextLine();
         Subject subject = Subject.valueOf(subjectString);
 
-        Score score = student.getReport().getTable().get(subject);
+        Score score = student.getReport().get(subject);
         score.printScores();
         System.out.println("Success to inquire.");
     }
