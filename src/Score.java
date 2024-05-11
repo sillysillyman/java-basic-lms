@@ -4,22 +4,16 @@ import java.util.Map.Entry;
 
 public class Score {
 
-    private final int subjectId;
-    private final int studentId;
+    private final Subject subject;
     private ArrayList<Entry<Integer, String>> scores;
 
-    public Score(Subject subject, int studentId, ArrayList<Entry<Integer, String>> scores) {
-        this.subjectId = subject.getId();
-        this.studentId = studentId;
+    public Score(Subject subject, ArrayList<Entry<Integer, String>> scores) {
+        this.subject = subject;
         this.scores = scores;
     }
 
-    public int getSubjectId() {
-        return subjectId;
-    }
-
-    public int getStudentId() {
-        return studentId;
+    public Subject getSubject() {
+        return subject;
     }
 
     public ArrayList<Entry<Integer, String>> getScores() {
